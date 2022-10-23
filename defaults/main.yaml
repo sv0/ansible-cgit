@@ -1,0 +1,10 @@
+---
+cgit_css: ""
+
+# the hostname used in nginx config's server section
+cgit_hostname: ""
+cgit_scan_path: /home/git
+cgit_packages:
+  - cgit
+  - nginx
+  - fcgiwrap

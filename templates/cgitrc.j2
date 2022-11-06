@@ -1,0 +1,15 @@
+# {{ ansible_managed }}
+# cgit config
+# see cgitrc(5) for details
+
+css=/cgit-css/cgit.css
+logo=/cgit-css/cgit.png
+scan-path={{ cgit_scan_path }}
+project-list=/home/git/project-list
+root-title=slavik git repositories
+
+enable-commit-graph=1
+#            Flag which, when set to "1", will make cgit print an ASCII-art
+#            commit history graph to the left of the commit messages in the
+#            repository log page. Default value: "0".
+virtual-root=/

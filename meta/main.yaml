@@ -1,0 +1,29 @@
+---
+galaxy_info:
+  role_name: cgit
+  namespace: sv0
+
+  author: Slavik Svyrydiuk
+  description: Install and configure cgit
+
+  license: MIT
+  min_ansible_version: "2.11"
+
+  platforms:
+    - name: Debian
+      versions:
+        - buster
+        - bullseye
+
+    - name: Ubuntu
+      versions:
+        # 20.04
+        - focal
+        # 22.04
+        - jammy
+
+  galaxy_tags:
+    - git
+    - web
+
+dependencies: []

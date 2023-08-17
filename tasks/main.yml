@@ -1,0 +1,33 @@
+---
+- name: Install required packages
+  package:
+    name: "{{ cgit_packages }}"
+    state: present
+
+
+- name: Create cgit configuration
+  template:
+    src: cgitrc.j2
+    dest: /etc/cgitrc
+    owner: root
+    group: root
+    mode: 0640
+    backup: true
+
+- name: Create nginx configuration
+  template:
+    src: nginx.j2
+    dest: "/etc/nginx/sites-available/{{ cgit_hostname | default(ansible_hostname, true) }}.conf"
+    owner: root
+    group: root
+    mode: 0640
+    backup: true
+
+- name: Enable nginx configuration
+  file:
+    src: "/etc/nginx/sites-available/{{ cgit_hostname | default(ansible_hostname, true) }}.conf"
+    dest: "/etc/nginx/sites-enabled/{{ cgit_hostname | default(ansible_hostname, true) }}.conf"
+    owner: root
+    group: root
+    mode: 0640
+    backup: true

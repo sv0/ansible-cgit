@@ -1,4 +1,5 @@
-# Ansible-cgit
+Ansible Cgit
+============
 
 This role installs and configures [cgit](https://git.zx2c4.com/cgit/about/),
 web interface for Git repositories.

@@ -8,3 +8,9 @@ cgit_packages:
   - cgit
   - nginx
   - fcgiwrap
+
+cgit_acl: |
+    deny  192.168.0.1;
+    allow 192.168.1.0/24;
+    allow 10.0.0.0/24;
+    deny  all;

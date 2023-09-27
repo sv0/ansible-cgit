@@ -1,0 +1,33 @@
+# Cgit
+server {
+  listen      80;
+  server_name {{ cgit_hostname | default(ansible_hostname, true) }};
+  root        /usr/share/cgit;
+  try_files   $uri @cgit;
+
+  # Configure HTTP transport
+  location /cgit-css {
+      alias /usr/share/cgit;
+  }
+
+  location ~ /.+/(info/refs|git-upload-pack) {
+    include             fastcgi_params;
+    fastcgi_param       SCRIPT_FILENAME     /usr/lib/git-core/git-http-backend;
+    fastcgi_param       PATH_INFO           $uri;
+    fastcgi_param       GIT_HTTP_EXPORT_ALL 1;
+    fastcgi_param       GIT_PROJECT_ROOT    {{ cgit_scan_path }};
+    fastcgi_param       HOME                {{ cgit_scan_path }};
+    fastcgi_pass        unix:/run/fcgiwrap.socket;
+    {{ cgit_acl | indent }}
+  }
+
+  location @cgit {
+    include             fastcgi_params;
+    fastcgi_param       SCRIPT_FILENAME /usr/lib/cgit/cgit.cgi;
+    fastcgi_param       PATH_INFO       $uri;
+    fastcgi_param       QUERY_STRING    $args;
+    fastcgi_param       HTTP_HOST       $server_name;
+    fastcgi_pass        unix:/run/fcgiwrap.socket;
+  }
+}
+

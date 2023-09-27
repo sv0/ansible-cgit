@@ -4,15 +4,16 @@
     name: "{{ cgit_packages }}"
     state: present
 
-
 - name: Create cgit configuration
   template:
     src: cgitrc.j2
     dest: /etc/cgitrc
     owner: root
-    group: root
+    group: www-data
     mode: 0640
     backup: true
+  tags:
+    - conf
 
 - name: Create nginx configuration
   template:
@@ -22,12 +23,17 @@
     group: root
     mode: 0640
     backup: true
+  notify: Restart nginx
+  tags:
+    - conf
 
 - name: Enable nginx configuration
   file:
     src: "/etc/nginx/sites-available/{{ cgit_hostname | default(ansible_hostname, true) }}.conf"
     dest: "/etc/nginx/sites-enabled/{{ cgit_hostname | default(ansible_hostname, true) }}.conf"
+    state: link
     owner: root
     group: root
     mode: 0640
-    backup: true
+  tags:
+    - conf

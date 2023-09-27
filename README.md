@@ -1,5 +1,4 @@
-Ansible Cgit
-============
+# Ansible Cgit
 
 This role installs and configures [cgit](https://git.zx2c4.com/cgit/about/),
 web interface for Git repositories.
@@ -14,15 +13,16 @@ web interface for Git repositories.
 
 ## Requirements and dependencies
 
-TBD
+- ansible>=5.10.0
+- ansible-core>=2.10.0
 
 ### Operating systems
 
 Tested on
 
-  - Debian 10
-  - Debian 11
-  - Ubuntu 20.04
+- Debian 10
+- Debian 11
+- Ubuntu 20.04
 
 ## Configuration
 

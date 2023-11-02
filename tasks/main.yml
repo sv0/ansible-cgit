@@ -18,7 +18,8 @@
 - name: Create nginx configuration
   template:
     src: nginx.j2
-    dest: "/etc/nginx/sites-available/{{ cgit_hostname | default(ansible_hostname, true) }}.conf"
+    dest: "/etc/nginx/sites-available/\
+           {{ cgit_hostname | default(ansible_hostname, true) }}.conf"
     owner: root
     group: root
     mode: 0640
@@ -29,8 +30,10 @@
 
 - name: Enable nginx configuration
   file:
-    src: "/etc/nginx/sites-available/{{ cgit_hostname | default(ansible_hostname, true) }}.conf"
-    dest: "/etc/nginx/sites-enabled/{{ cgit_hostname | default(ansible_hostname, true) }}.conf"
+    src: "/etc/nginx/sites-available/\
+          {{ cgit_hostname | default(ansible_hostname, true) }}.conf"
+    dest: "/etc/nginx/sites-enabled/\
+           {{ cgit_hostname | default(ansible_hostname, true) }}.conf"
     state: link
     owner: root
     group: root

@@ -1,0 +1,8 @@
+---
+# roles:
+#   - name: some-other-role
+#     src: git+ssh://git@git.svyrydiuk.eu/roles/some-other-role.core.git
+#     scm: git
+
+collections:
+  - name: community.general  # not used in this role, it's just example

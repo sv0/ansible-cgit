@@ -1,0 +1,11 @@
+---
+- name: Converge
+  hosts: all
+  any_errors_fatal: false
+  gather_facts: true
+
+  environment:
+    NETRC: ''
+
+  roles:
+    - role: ansible-cgit

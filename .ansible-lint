@@ -1,5 +1,7 @@
 ---
-skip_list:
-  # - experimental  # all rules tagged as experimental
-  - fqcn-builtins  # Use FQCN for builtin actions.
-  # - meta-no-info  # meta/main.yml should contain relevant info.
+use_default_rules: true
+parseable: true
+exclude_paths:
+  - .venv
+
+verbosity: 1

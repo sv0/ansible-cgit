@@ -18,7 +18,6 @@ defaults:
     working-directory: 'ansible-cgit'
 
 jobs:
-
   deb:
     name: "${{ matrix.image }} / ansible: ${{ matrix.ansible-version }}"
     runs-on: ubuntu-latest
@@ -26,8 +25,8 @@ jobs:
       fail-fast: false
       matrix:
         image:
-          - debian:10
-          - debian:11
+          - slavik0/debian-11-systemd
+          - slavik0/debian-12-systemd
           - ubuntu:20.04
           - ubuntu:22.04
         ansible-version:
@@ -71,4 +70,4 @@ jobs:
         uses: robertdebock/galaxy-action@1.2.1
         with:
           galaxy_api_key: ${{ secrets.galaxy_api_key }}
-          git_branch: main
+          git_branch: master

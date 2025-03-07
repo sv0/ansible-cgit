@@ -1,11 +1,11 @@
 ---
 - name: Install required packages
-  package:
+  ansible.builtin.package:
     name: "{{ cgit_packages }}"
     state: present
 
 - name: Create cgit configuration
-  template:
+  ansible.builtin.template:
     src: cgitrc.j2
     dest: /etc/cgitrc
     owner: root
@@ -16,7 +16,7 @@
     - conf
 
 - name: Create nginx configuration
-  template:
+  ansible.builtin.template:
     src: nginx.j2
     dest: "/etc/nginx/sites-available/\
            {{ cgit_hostname | default(ansible_hostname, true) }}.conf"
@@ -29,7 +29,7 @@
     - conf
 
 - name: Enable nginx configuration
-  file:
+  ansible.builtin.file:
     src: "/etc/nginx/sites-available/\
           {{ cgit_hostname | default(ansible_hostname, true) }}.conf"
     dest: "/etc/nginx/sites-enabled/\

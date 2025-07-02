@@ -2,8 +2,6 @@
 extends: default
 
 ignore: |
-  .temp
-  .vagrant
   .venv
 
 rules:

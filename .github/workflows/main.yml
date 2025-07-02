@@ -29,6 +29,7 @@ jobs:
           - slavik0/debian-12-systemd
           - ubuntu:20.04
           - ubuntu:22.04
+          - ubuntu:24.04
         ansible-version:
           - '5.1'
           - '6.1'
@@ -46,19 +47,18 @@ jobs:
         with:
           python-version: '3.x'
 
-      # - name: install dependencies
-      #   run: |
-      #     python -m pip install --upgrade pip
-      #     pip install -r test-requirements.txt
-
-      # - name: test with tox
-      #   run: |
-      #     tox -e ansible_$(printf "${{ matrix.ansible-version }}") \
-      #       -- molecule test --scenario-name default
-      #   env:
-      #     PY_COLORS: '1'
-      #     ANSIBLE_FORCE_COLOR: '1'
-      #     DISTRIBUTION: ${{ matrix.image }}
+# - name: install dependencies
+#   run: |
+#     python -m pip install --upgrade pip
+#     pip install -r test-requirements.txt
+# - name: test with tox
+#   run: |
+#     tox -e ansible_$(printf "${{ matrix.ansible-version }}") \
+#       -- molecule test --scenario-name default
+#   env:
+#     PY_COLORS: '1'
+#     ANSIBLE_FORCE_COLOR: '1'
+#     DISTRIBUTION: ${{ matrix.image }}
 
   publish:
     if: github.ref == 'refs/heads/main'
